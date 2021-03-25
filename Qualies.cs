@@ -91,15 +91,15 @@ namespace Motorsport_StreamDeck
 
             if (carNum > 0)
             {
-                bool isSel = false;
-                foreach (var l in SelectedCars)
-                {
-                    if (l == carNum)
-                    {
-                        isSel = true;
-                        break;
-                    }
-                }
+                //bool isSel = false;
+                //foreach (var l in SelectedCars)
+                //{
+                //    if (l == carNum)
+                //    {
+                //        //isSel = true;
+                //        break;
+                //    }
+                //}
 
                 HotkeyHandler.RunHotkey("{Multiply}");
                 HotkeyHandler.RunHotkey("{F4}");
