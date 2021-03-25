@@ -1,0 +1,59 @@
+{
+  "Actions": [
+    {
+      "Icon": "Images/Vehicles",
+      "Name": "Selectable Car",
+      "States": [
+        {
+          "Image": "Images/Back",
+          "TitleAlignment": "middle",
+          "Title": "",
+          "TitleColor": "orange",
+          "FontSize": "32",
+          "FontFamily": "Arial"
+        }
+      ],
+      "SupportedInMultiActions": false,
+      "Tooltip": "Deck of motorsport actions related to car selection",
+      "UUID": "com.motorsport.streamdeck.car",
+      "PropertyInspectorPath": "PropertyInspector/PluginActionPI.html"
+    },
+    {
+      "Icon": "Images/Qualifying",
+      "Name": "Qualifying Car",
+      "States": [
+        {
+          "Image": "Images/Back",
+          "TitleAlignment": "middle",
+          "Title": "",
+          "TitleColor": "orange",
+          "FontSize": "32",
+          "FontFamily": "Arial"
+        }
+      ],
+      "SupportedInMultiActions": false,
+      "Tooltip": "Deck of motorsport actions related to cars in qualifying/practice",
+      "UUID": "com.motorsport.streamdeck.quali",
+      "PropertyInspectorPath": "PropertyInspector/PluginActionPI.html"
+    }
+  ],
+  "Author": "Girraphic",
+  "Name": "Motorsport",
+  "Description": "Motorsport stream deck",
+  "Icon": "Images/pluginIcon",
+  "URL": "",
+  "Version": "1.0.0.0",
+  "CodePath": "com.motorsport.streamdeck",
+  "Category": "Custom",
+  "CategoryIcon": "Images/categoryIcon",
+  "OS": [
+    {
+      "Platform": "windows",
+      "MinimumVersion": "10"
+    }
+  ],
+  "SDKVersion": 2,
+  "Software": {
+    "MinimumVersion": "4.9"
+  }
+}
