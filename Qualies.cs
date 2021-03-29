@@ -128,6 +128,7 @@ namespace Motorsport_StreamDeck
             string value = String.Empty;
             List<int> eList = JsonFiles.LoadJSONList("EntryList");
             SelectedCars = JsonFiles.LoadJSONList("QSelected");
+            List<int> fastList = JsonFiles.LoadJSONList("Fastest");
             value = "";
             if (eList != null && eList.Count > 0 && settings.CarPosition > 0 && settings.CarPosition <= eList.Count)
             {
@@ -148,6 +149,15 @@ namespace Motorsport_StreamDeck
                         break;
                     }
                 }
+                bool isFast = false;
+                foreach (var l in fastList)
+                {
+                    if (l == carNum)
+                    {
+                        isFast = true;
+                        break;
+                    }
+                }
                 if (isSel)
                 {
                     Image newImg = Image.FromFile("Images\\BackQ.png");
@@ -155,8 +165,16 @@ namespace Motorsport_StreamDeck
                 }
                 else
                 {
-                    Image newImg = Image.FromFile("Images\\Back.png");
-                    await Connection.SetImageAsync(newImg, null, true);
+                    if (isFast)
+                    {
+                        Image newImg = Image.FromFile("Images\\BackFast.png");
+                        await Connection.SetImageAsync(newImg, null, true);
+                    }
+                    else
+                    {
+                        Image newImg = Image.FromFile("Images\\Back.png");
+                        await Connection.SetImageAsync(newImg, null, true);
+                    }
                 }
             }
         }
