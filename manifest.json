@@ -1,49 +1,157 @@
 {
   "Actions": [
     {
-      "Icon": "Images/Vehicles",
-      "Name": "Selectable Car",
+      "Icon": "Images/Bikes",
+      "Name": "Selectable Bike",
       "States": [
         {
           "Image": "Images/Back",
           "TitleAlignment": "middle",
           "Title": "",
-          "TitleColor": "orange",
-          "FontSize": "32",
+          "TitleColor": "#ffffff",
+          "FontSize": "12",
           "FontFamily": "Arial"
         }
       ],
       "SupportedInMultiActions": false,
-      "Tooltip": "Deck of motorsport actions related to car selection",
-      "UUID": "com.motorsport.streamdeck.car",
+      "Tooltip": "Deck of hard enduro actions related to bike selection",
+      "UUID": "com.hardenduro.streamdeck.car",
       "PropertyInspectorPath": "PropertyInspector/PluginActionPI.html"
     },
     {
-      "Icon": "Images/Qualifying",
-      "Name": "Qualifying Car",
+      "Icon": "Images/Bikes",
+      "Name": "Set A Bike Number",
       "States": [
         {
           "Image": "Images/Back",
           "TitleAlignment": "middle",
           "Title": "",
-          "TitleColor": "orange",
-          "FontSize": "32",
+          "TitleColor": "white",
+          "FontSize": "12",
           "FontFamily": "Arial"
         }
       ],
       "SupportedInMultiActions": false,
-      "Tooltip": "Deck of motorsport actions related to cars in qualifying/practice",
-      "UUID": "com.motorsport.streamdeck.quali",
+      "Tooltip": "Display of bike number",
+      "UUID": "com.hardenduro.streamdeck.bikenumber",
       "PropertyInspectorPath": "PropertyInspector/PluginActionPI.html"
+    },
+    {
+      "Icon": "Images/Bikes",
+      "Name": "Bike Number Display",
+      "States": [
+        {
+          "Image": "Images/Number",
+          "TitleAlignment": "middle",
+          "Title": "",
+          "TitleColor": "white",
+          "FontSize": "12",
+          "FontFamily": "Arial"
+        }
+      ],
+      "SupportedInMultiActions": false,
+      "Tooltip": "Setting of a bike number",
+      "UUID": "com.hardenduro.streamdeck.bikenumdisplay",
+      "PropertyInspectorPath": "PropertyInspector/PluginActionPI.html"
+    },
+    {
+      "Icon": "Images/Bikes",
+      "Name": "Take Namesuper",
+      "States": [
+        {
+          "Image": "Images/Take",
+          "TitleAlignment": "middle",
+          "Title": "TAKE",
+          "TitleColor": "white",
+          "FontSize": "12",
+          "FontFamily": "Arial"
+        }
+      ],
+      "SupportedInMultiActions": false,
+      "Tooltip": "Take graphic to air",
+      "UUID": "com.hardenduro.streamdeck.take",
+      "PropertyInspectorPath": "PropertyInspector/Empty.html"
+    },
+    {
+      "Icon": "Images/Bikes",
+      "Name": "Preview Namesuper",
+      "States": [
+        {
+          "Image": "Images/Preview",
+          "TitleAlignment": "middle",
+          "Title": "PREVIEW",
+          "TitleColor": "white",
+          "FontSize": "12",
+          "FontFamily": "Arial"
+        }
+      ],
+      "SupportedInMultiActions": false,
+      "Tooltip": "Take graphic to air",
+      "UUID": "com.hardenduro.streamdeck.preview",
+      "PropertyInspectorPath": "PropertyInspector/Empty.html"
+    },
+    {
+      "Icon": "Images/Bikes",
+      "Name": "Clear Input",
+      "States": [
+        {
+          "Image": "Images/Back",
+          "TitleAlignment": "middle",
+          "Title": "CLEAR\nINPUT",
+          "TitleColor": "white",
+          "FontSize": "18",
+          "FontFamily": "Arial"
+        }
+      ],
+      "SupportedInMultiActions": false,
+      "Tooltip": "Clear Input Bike Number",
+      "UUID": "com.hardenduro.streamdeck.clearbikenum",
+      "PropertyInspectorPath": "PropertyInspector/Empty.html"
+    },
+    {
+      "Icon": "Images/Bikes",
+      "Name": "Bikes Auto Set (from OkAPPi)",
+      "States": [
+        {
+          "Image": "Images/Back",
+          "TitleAlignment": "middle",
+          "Title": "",
+          "TitleColor": "yellow",
+          "FontSize": "8",
+          "FontFamily": "Arial"
+        }
+      ],
+      "SupportedInMultiActions": false,
+      "Tooltip": "Get's bike data from OkAPPi",
+      "UUID": "com.hardenduro.streamdeck.bikeautoset",
+      "PropertyInspectorPath": "PropertyInspector/PluginAction-Auto.html"
+    },
+    {
+      "Icon": "Images/Bikes",
+      "Name": "OkAPPi send UDP Message",
+      "States": [
+        {
+          "Image": "Images/Back",
+          "TitleAlignment": "bottom",
+          "Title": "",
+          "TitleColor": "white",
+          "FontSize": "9",
+          "FontFamily": "Arial"
+        }
+      ],
+      "SupportedInMultiActions": false,
+      "Tooltip": "Sends a UDP message to OkAPPi",
+      "UUID": "com.hardenduro.streamdeck.OkAPPiMessage",
+      "PropertyInspectorPath": "PropertyInspector/PluginAction-UDP.html"
     }
   ],
   "Author": "Girraphic",
-  "Name": "Motorsport",
-  "Description": "Motorsport stream deck",
+  "Name": "Hard Enduro",
+  "Description": "Hard Enduro stream deck",
   "Icon": "Images/pluginIcon",
   "URL": "",
   "Version": "1.0.0.0",
-  "CodePath": "com.motorsport.streamdeck",
+  "CodePath": "com.hardenduro.streamdeck",
   "Category": "Custom",
   "CategoryIcon": "Images/categoryIcon",
   "OS": [

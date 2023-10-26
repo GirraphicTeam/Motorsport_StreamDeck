@@ -7,13 +7,22 @@ using System.Linq;
 using System.Xml.Linq;
 using System.Drawing;
 using HotkeyCommands;
-using Motorsport_StreamDeck.JsonManagement;
+using HardEnduro_StreamDeck.JsonManagement;
+using System.Net.Sockets;
+using System.Text;
+using System.IO;
 
 namespace Motorsport_StreamDeck
 {
-    [PluginActionId("com.motorsport.streamdeck.car")]
+    [PluginActionId("com.hardenduro.streamdeck.car")]
     public class Car : PluginBase
     {
+        private class Rider
+        {
+            public int BikeNum;
+            public string Name;
+        }
+
         private class PluginSettings
         {
             public static PluginSettings CreateDefaultSettings()
@@ -72,48 +81,60 @@ namespace Motorsport_StreamDeck
             //keyPressStart = DateTime.Now;
             //keyPressed = true;
 
-            List<int> eList = JsonFiles.LoadJSONList("EntryList");
-            SelectedCars = JsonFiles.LoadJSONList("Selected");
-            string hotkey = "Numpad";
-            string value = "";
-            int carNum = 0;
-            if (eList != null && eList.Count > 0 && settings.CarPosition > 0 && settings.CarPosition <= eList.Count)
-            {
-                value = eList[settings.CarPosition - 1].ToString();
-            }
+            List<Rider> eList;
 
-            for (int i = 0; i < value.Length; i++)
+            using (StreamReader file = File.OpenText(@"EntryList.json"))
             {
-                HotkeyHandler.RunHotkey("{" + hotkey + value[i] + "}");
-            }
-            Int32.TryParse(value, out carNum);
+                JsonSerializer serializer = new JsonSerializer();
+                eList = (List<Rider>)serializer.Deserialize(file, typeof(List<Rider>));
 
-            if (carNum > 0)
-            {
-                bool isSel = false;
-                foreach (var l in SelectedCars)
+                SelectedCars = JsonFiles.LoadJSONList("Selected");
+                string value = "";
+                int carNum = 0;
+                if (eList != null && eList.Count > 0 && settings.CarPosition > 0 && settings.CarPosition <= eList.Count)
                 {
-                    if (l == carNum)
+                    value = eList[settings.CarPosition - 1].BikeNum.ToString();
+                }
+
+                UdpClient udpClient = new UdpClient();
+
+                Byte[] sendBytes = Encoding.UTF8.GetBytes("NAMESUPER|" + value);
+                try
+                {
+                    udpClient.Send(sendBytes, sendBytes.Length, "127.0.0.1", 50511);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.ToString());
+                }
+
+                Int32.TryParse(value, out carNum);
+
+                if (carNum > 0)
+                {
+                    bool isSel = false;
+                    foreach (var l in SelectedCars)
                     {
-                        isSel = true;
-                        break;
+                        if (l == carNum)
+                        {
+                            isSel = true;
+                            break;
+                        }
                     }
-                }
 
-                HotkeyHandler.RunHotkey("{Multiply}");
-                if (!isSel)
-                {
-                    HotkeyHandler.RunHotkey("{Add}");
-                    SelectedCars.Add(carNum);
+                    if (!isSel)
+                    {
+                        SelectedCars.Add(carNum);
+                    }
+                    else
+                    {
+                        SelectedCars.Remove(carNum);
+                    }
+
+                    JsonFiles.SaveJSONList("Selected", SelectedCars);
                 }
-                else
-                {
-                    HotkeyHandler.RunHotkey("{Subtract}");
-                    SelectedCars.Remove(carNum);
-                }
-                JsonFiles.SaveJSONList("Selected", SelectedCars);
             }
-
+            
             Logger.Instance.LogMessage(TracingLevel.INFO, "Key Pressed");
         }
 
@@ -125,38 +146,46 @@ namespace Motorsport_StreamDeck
 
         public async override void OnTick()
         {
-            string value = String.Empty;
-            List<int> eList = JsonFiles.LoadJSONList("EntryList");
-            SelectedCars = JsonFiles.LoadJSONList("Selected");
-            value = "";
-            if (eList != null && eList.Count > 0 && settings.CarPosition > 0 && settings.CarPosition <= eList.Count)
-            {
-                value = eList[settings.CarPosition - 1].ToString();
-            }
-            int carNum = 0;
-            Int32.TryParse(value, out carNum);
+            List<Rider> eList;
 
-            await Connection.SetTitleAsync($"{value}");
-            if (carNum > 0)
+            using (StreamReader file = File.OpenText(@"EntryList.json"))
             {
-                bool isSel = false;
-                foreach (var l in SelectedCars)
+                JsonSerializer serializer = new JsonSerializer();
+                eList = (List<Rider>)serializer.Deserialize(file, typeof(List<Rider>));
+
+                SelectedCars = JsonFiles.LoadJSONList("Selected");
+                string value = String.Empty;
+                if (eList != null && eList.Count > 0 && settings.CarPosition > 0 && settings.CarPosition <= eList.Count)
                 {
-                    if (l == carNum)
+                    value = eList[settings.CarPosition - 1].BikeNum.ToString();
+                    value += "\n" + eList[settings.CarPosition - 1].Name;
+                }
+                int carNum = 0;
+                Int32.TryParse(value, out carNum);
+
+                await Connection.SetTitleAsync($"{value}");
+
+                if (carNum > 0)
+                {
+                    bool isSel = false;
+                    foreach (var l in SelectedCars)
                     {
-                        isSel = true;
-                        break;
+                        if (l == carNum)
+                        {
+                            isSel = true;
+                            break;
+                        }
                     }
-                }
-                if (isSel)
-                {
-                    Image newImg = Image.FromFile("Images\\BackSel.png");
-                    await Connection.SetImageAsync(newImg, null, true);
-                }
-                else
-                {
-                    Image newImg = Image.FromFile("Images\\Back.png");
-                    await Connection.SetImageAsync(newImg, null, true);
+                    if (isSel)
+                    {
+                        Image newImg = Image.FromFile("Images\\BackSel.png");
+                        await Connection.SetImageAsync(newImg, null, true);
+                    }
+                    else
+                    {
+                        Image newImg = Image.FromFile("Images\\Back.png");
+                        await Connection.SetImageAsync(newImg, null, true);
+                    }
                 }
             }
         }

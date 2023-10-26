@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace Motorsport_StreamDeck.JsonManagement
+namespace HardEnduro_StreamDeck.JsonManagement
 {
     public class JsonFiles
     {

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Motorsport_StreamDeck
+namespace HardEnduro_StreamDeck
 {
     class Program
     {

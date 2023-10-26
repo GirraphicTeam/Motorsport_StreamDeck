@@ -8,9 +8,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Motorsport_StreamDeck
+namespace HardEnduro_StreamDeck
 {
-    [PluginActionId("com.motorsport.streamdeck.cars")]
+    [PluginActionId("com.hardenduro.streamdeck.cars")]
     public class PluginAction : PluginBase
     {
         private class PluginSettings

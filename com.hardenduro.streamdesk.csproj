@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{4635D874-69C0-4010-BE46-77EF92EB1553}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Motorsport_StreamDeck</RootNamespace>
-    <AssemblyName>com.motorsport.streamdeck</AssemblyName>
+    <RootNamespace>HardEnduro_StreamDeck</RootNamespace>
+    <AssemblyName>com.hardenduro.streamdeck</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -18,7 +18,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\com.motorsport.streamdeck.sdPlugin\</OutputPath>
+    <OutputPath>bin\Debug\com.hardenduro.streamdeck.sdPlugin\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -33,27 +33,27 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CommandLine, Version=2.8.0.0, Culture=neutral, PublicKeyToken=5a870481e358d379, processorArchitecture=MSIL">
-      <HintPath>packages\CommandLineParser.2.8.0\lib\net461\CommandLine.dll</HintPath>
+    <Reference Include="CommandLine, Version=2.9.1.0, Culture=neutral, PublicKeyToken=5a870481e358d379, processorArchitecture=MSIL">
+      <HintPath>packages\CommandLineParser.2.9.1\lib\net461\CommandLine.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>packages\Newtonsoft.Json.13.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
-      <HintPath>packages\NLog.4.7.8\lib\net45\NLog.dll</HintPath>
+    <Reference Include="NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>packages\NLog.5.1.1\lib\net46\NLog.dll</HintPath>
     </Reference>
     <Reference Include="streamdeck-client-csharp, Version=4.3.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\streamdeck-client-csharp.4.3.0\lib\netstandard2.0\streamdeck-client-csharp.dll</HintPath>
     </Reference>
-    <Reference Include="StreamDeckTools, Version=3.2.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\StreamDeck-Tools.3.2.0\lib\net472\StreamDeckTools.dll</HintPath>
+    <Reference Include="StreamDeckTools, Version=6.1.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\StreamDeck-Tools.6.1.1\lib\netstandard2.0\StreamDeckTools.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Drawing.Common, Version=4.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>packages\System.Drawing.Common.5.0.2\lib\net461\System.Drawing.Common.dll</HintPath>
+    <Reference Include="System.Drawing.Common, Version=7.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Drawing.Common.7.0.0\lib\net462\System.Drawing.Common.dll</HintPath>
     </Reference>
     <Reference Include="System.IO.Compression" />
     <Reference Include="System.Runtime.Serialization" />
@@ -70,13 +70,19 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BikeAutoSet.cs" />
+    <Compile Include="ClearBikeNum.cs" />
     <Compile Include="HotkeyCommands\HotkeyHandler.cs" />
     <Compile Include="HotkeyCommands\VirtualKeyCodeContainer.cs" />
     <Compile Include="JsonManagement\JsonFiles.cs" />
     <Compile Include="PluginAction.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Qualies.cs" />
+    <Compile Include="BikeNumDisplay.cs" />
+    <Compile Include="BikeNum.cs" />
+    <Compile Include="Preview.cs" />
+    <Compile Include="OkAPPiMessage.cs" />
+    <Compile Include="Take.cs" />
     <Compile Include="Vehicles.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -88,28 +94,19 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="!!README!!.txt" />
+    <Content Include="CurrentNumber.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Images\Back%402x.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\Back.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\BackFast%402x.png">
+    <Content Include="Images\Bikes%402x.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\BackFast.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Images\BackQ%402x.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Images\BackQ.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Images\BackSel%402x.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Images\BackSel.png">
+    <Content Include="Images\Bikes.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\categoryIcon%402x.png">
@@ -118,10 +115,16 @@
     <Content Include="Images\categoryIcon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Images\Clear.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Images\icon%402x.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\icon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Number.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\pluginAction%402x.png">
@@ -136,16 +139,19 @@
     <Content Include="Images\pluginIcon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Qualifying%402x.png">
+    <Content Include="Images\Preview.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Qualifying.png">
+    <Content Include="Images\Take.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Vehicles%402x.png">
+    <Content Include="PropertyInspector\Empty.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Vehicles.png">
+    <Content Include="PropertyInspector\PluginAction-Auto.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="PropertyInspector\PluginAction-UDP.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="PropertyInspector\PluginActionPI.html">
